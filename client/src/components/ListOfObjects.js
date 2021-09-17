@@ -20,8 +20,8 @@ const ListOfObjects = (props) => {
     };
 
     return (
-        <div>
-            <div className="d-flex gap-4 justify-content-around">
+        <div className="orangeIsh">
+            <div className="d-flex justify-content-around darkBrown">
                 <h1>Pirate Crew</h1>
                 <Link
                     to="/pirate/new"
@@ -30,17 +30,21 @@ const ListOfObjects = (props) => {
                     Add Pirate
                 </Link>
             </div>
+            <div className="container orangeIsh">
             {somethings.map((pirate, index) => (
                 <div
-                    className="border border-dark m-3 p-3 d-flex"
+                    className="border border-dark m-3 p-3 d-flex whiteBG"
                     key={index}
                 >
-                    <img src={pirate.image} alt={pirate.name} height="150"/>
-                    <div className="w-100">
+                    <div className="w-25">
+                        <img src={pirate.image} alt={pirate.name} height="150"/>
+                    </div>
+                    
+                    <div className="w-75">
                         <h2 className="text-center mb-4">{pirate.name}</h2>
-                        <h4 className="text-center">{pirate._id}</h4>
+                        <h4 className="text-center text-white">{pirate._id}</h4>
                         <div className="d-flex justify-content-around">
-                        <Link to={"/pirate/" + pirate._id}>View Pirate</Link>
+                        <Link to={"/pirate/" + pirate._id} className="btn btn-primary w-25">View Pirate</Link>
                         <DeleteButton
                             somethingID={pirate._id}
                             deletionResponse={() => removeFromDOM(pirate._id)}
@@ -50,6 +54,7 @@ const ListOfObjects = (props) => {
                     </div>
                 </div>
             ))}
+            </div>
         </div>
     );
 };

@@ -49,8 +49,8 @@ const NewForm = (props) => {
     };
 
     return (
-        <div className="container p-5">
-            <div className="d-flex gap-4">
+        <div className="orangeIsh">
+            <div className="d-flex gap-4 justify-content-around p-3 darkBrown">
                 <h1>Add Pirate</h1>
                 <Link to="/pirates" className="btn btn-primary align-self-center">Crew Board</Link>
             </div>
@@ -62,7 +62,7 @@ const NewForm = (props) => {
                     ))}
                 </div>
                 {/* MAIN INPUTS */}
-                <div className="d-flex justify-content-between">
+                <div className="d-flex w-100 justify-content-around p-4">
                     {/* LEFT SIDE */}
                     <div className="w-50">
                         <p>Name</p>
@@ -72,21 +72,21 @@ const NewForm = (props) => {
                             placeholder="name"
                             className="w-50"
                         />
-                        <p>Image URL</p>
+                        <p className="mt-3">Image URL</p>
                         <input
                             type="text"
                             onChange={(e) => setImage(e.target.value)}
                             placeholder="http://www.pirate.com/image.jpeg"
                             className="w-50"
                         />
-                        <p># of Treasure Chests: </p>
+                        <p className="mt-3"># of Treasure Chests: </p>
                         <input
                             type="number"
                             onChange={(e) => setTreasure(e.target.value)}
                             placeholder="1"
                             
                         />
-                        <p>Phrase</p>
+                        <p className="mt-3">Phrase</p>
                         <input
                             type="text"
                             onChange={(e) => setPhrase(e.target.value)}
@@ -95,7 +95,7 @@ const NewForm = (props) => {
                         />
                     </div>
                     {/* RIGHT SIDE */}
-                    <div className="w-50">
+                    <div>
                         <p>Position</p>
                         <select onChange={(e) => setRole(e.target.value)}>
                             {defaultRoles.map((position) => (
@@ -103,7 +103,7 @@ const NewForm = (props) => {
                             ))}
                         </select>
                         {/* BODY MODS */}
-                        <div>
+                        <div className="mt-3">
                             <div className="d-flex align-items-start gap-2 p-1 mb-1">
                                 <input
                                     type="checkbox"
@@ -131,7 +131,7 @@ const NewForm = (props) => {
                         </div>
 
                         <div>
-                            <button type="submit">Submit</button>
+                            <button type="submit" className="btn btn-primary">Submit</button>
                         </div>
                     </div>
                 </div>

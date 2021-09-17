@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { navigate, useParams } from "@reach/router";
+import { navigate, useParams, Link } from "@reach/router";
 
 const SingleObject = (props) => {
     const {id} = useParams();
@@ -55,15 +55,19 @@ const SingleObject = (props) => {
     };
 
     return (
-        <div className="container">
-            {something._id}
-            <h1 className="text-center">{something.name}</h1>
-            <div className="d-flex justify-content-around">
+        <div className="m-2 orangeIsh">
+            <div className="d-flex gap-4 justify-content-around p-3 darkBrown">
+                <p> </p>
+                <h1 className="text-center">{something.name}</h1>
+                <Link to="/pirates" className="btn btn-primary align-self-center">Crew Board</Link>
+            </div>
+            
+            <div className="d-flex justify-content-around p-3">
             <div className="w-50">
                 <img src={something.image} alt={something.name} width="500"/>
                 <h2 className="mt-3 text-center">"{something.phrase}"</h2>
             </div>
-            <div className="w-50 px-5">
+            <div className="w-50 px-5 whiteBG">
                 <h2 className="text-center">About</h2>
                 <p>Position: {something.role}</p>
                 <p>Treasures: {something.treasure}</p>
@@ -73,7 +77,7 @@ const SingleObject = (props) => {
                     <p className="mb-5">Eye Patch: {something.patch ? "Yes" : "No"}</p>
                     <p className="mb-5">Hook Hand: {something.hook ? "Yes" : "No"}</p>
                     </div>
-                    <div className="d-flex flex-column mx-5 gap-4">
+                    <div className="d-flex flex-column gap-4 w-25">
                         <button 
                             className={something.peg ? "btn btn-danger" : "btn btn-success"}
                             onClick={(e) => changePeg(something)}

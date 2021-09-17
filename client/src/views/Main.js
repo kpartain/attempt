@@ -8,12 +8,7 @@ import SingleObject from '../components/SingleObject';
 
 const Main = () => {
   return (
-    <div>
-        <h1>MAIN PAGE</h1>
-        <nav className="d-flex">
-            <p><Link to = "/pirates">Home</Link> | </p>
-            <p><Link to = "/pirate/new">New Pirate</Link></p>
-        </nav>
+    <div className="container mt-4">
         
       <Router>
         <NewForm path="/pirate/new" />

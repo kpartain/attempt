@@ -19,7 +19,7 @@ module.exports.create = (request, response) => {
 };
 //READ
 module.exports.getAll = (request, response) => {
-    Something.find({})
+    Something.find().sort({name: 1})
         .then((listOfSomethingObjects) => response.json(listOfSomethingObjects))
         .catch((errorFound) => response.json(errorFound));
 };
