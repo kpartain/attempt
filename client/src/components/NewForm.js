@@ -107,7 +107,7 @@ const NewForm = (props) => {
                             <div className="d-flex align-items-start gap-2 p-1 mb-1">
                                 <input
                                     type="checkbox"
-                                    onChange={(e) => setPeg(e.target.value)}
+                                    onChange={(e) => setPeg(!peg)}
                                     defaultChecked={peg}
                                 />{" "}
                                 <p>Peg Leg</p>
@@ -115,7 +115,7 @@ const NewForm = (props) => {
                             <div className="d-flex align-items-start gap-2 p-1 mb-1">
                                 <input
                                     type="checkbox"
-                                    onChange={(e) => setPatch(e.target.value)}
+                                    onChange={(e) => setPatch(!patch)}
                                     defaultChecked={patch}
                                 />{" "}
                                 <p>Eye Patch</p>
@@ -123,7 +123,7 @@ const NewForm = (props) => {
                             <div className="d-flex align-items-start gap-2 p-1 mb-1">
                                 <input
                                     type="checkbox"
-                                    onChange={(e) => setHook(e.target.checked)}
+                                    onChange={(e) => setHook(!hook)}
                                     defaultChecked={hook}
                                 />{" "}
                                 <p>Hook Hand</p>
