@@ -4,7 +4,7 @@ module.exports = function (app) {
     //get all (GET)
     app.get("/api/somethings", SomethingController.getAll);
     //get one by id(GET)
-    app.get("/api/somethings/:id", SomethingController.getByID);
+    app.get("/api/somethings/:_id", SomethingController.getByID);
     //create one endpoint (POST)
     app.post("/api/something", SomethingController.create);
     //edit one by id(PUT)

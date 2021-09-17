@@ -30,21 +30,17 @@ const ListOfObjects = (props) => {
                     Add Pirate
                 </Link>
             </div>
-            {somethings.map((pirate) => (
+            {somethings.map((pirate, index) => (
                 <div
                     className="border border-dark m-3 p-3 d-flex"
-                    key={pirate._id}
+                    key={index}
                 >
                     <img src={pirate.image} alt={pirate.name} height="150"/>
                     <div className="w-100">
                         <h2 className="text-center mb-4">{pirate.name}</h2>
+                        <h4 className="text-center">{pirate._id}</h4>
                         <div className="d-flex justify-content-around">
-                            <Link
-                            to={"/pirate/" + pirate._id}
-                            className="btn btn-primary w-25"
-                        >
-                            View Pirate
-                        </Link>
+                        <Link to={"/pirate/" + pirate._id}>View Pirate</Link>
                         <DeleteButton
                             somethingID={pirate._id}
                             deletionResponse={() => removeFromDOM(pirate._id)}

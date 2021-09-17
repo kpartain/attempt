@@ -16,9 +16,9 @@ const Main = () => {
         </nav>
         
       <Router>
-        <NewForm path = "/pirate/new" />
-        <SingleObject path= "/pirate/:_id" />
-        <ListOfObjects path = "/pirates"/>
+        <NewForm path="/pirate/new" />
+        <SingleObject path="/pirate/:id" />
+        <ListOfObjects path="/pirates"/>
       </Router>
     </div>
   )

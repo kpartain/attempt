@@ -24,15 +24,14 @@ module.exports.getAll = (request, response) => {
         .catch((errorFound) => response.json(errorFound));
 };
 module.exports.getByID = (request, response) => {
-    Something.findOne({ _id: request.params.id })
+    Something.findOne({ _id: request.params._id })
         .then((foundSomethingObject) => response.json(foundSomethingObject))
         .catch((errorFound) => response.json(errorFound));
 };
 //UPDATE
 module.exports.updateByID = (request, response) => {
-    Something.findOneAndUpdate({ _id: request.params.id }, request.body, {
-        new: true,
-        runValidators: true,
+    Something.findOneAndUpdate({ id: request.params._id }, request.body, {
+        new: true
     })
         .then((somethingBeingUpdated) => response.json(somethingBeingUpdated))
         .catch((errorFound) => response.status(400).json(errorFound));
