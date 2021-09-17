@@ -1,23 +1,44 @@
-
 import React, { useState } from "react";
 import axios from "axios";
-import { navigate } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 
 const NewForm = (props) => {
-    const [textAttribute, setTextAttribute] = useState("");
-    const [numberAttribute, setNumberAttribute] = useState("");
+    const [name, setName] = useState("");
+    const [image, setImage] = useState("");
+    const [treasure, setTreasure] = useState("");
+    const [phrase, setPhrase] = useState("");
+    const [role, setRole] = useState("");
+    const [peg, setPeg] = useState(true);
+    const [patch, setPatch] = useState(true);
+    const [hook, setHook] = useState(true);
     const [errors, setErrors] = useState([]);
+
+    //captain, first mate, quarter master, boatswain, powder monkey
+    const defaultRoles = [
+        "captain",
+        "first mate",
+        "quarter master",
+        "boatswain",
+        "powder monkey",
+    ];
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        console.log(textAttribute, numberAttribute);
+        console.log(name, image, treasure, phrase, role, peg, patch, hook);
         axios
             .post("http://localhost:8000/api/something", {
-                textAttribute,
-                numberAttribute,
+                name,
+                image,
+                treasure,
+                phrase,
+                role,
+                peg,
+                patch,
+                hook
             })
-            .then((res) => navigate("/"))
+            .then((res) => navigate("/pirates"))
             .catch((err) => {
+                console.log("ERROR HERE", err)
                 const errorResponse = err.response.data.errors;
                 const errorArr = [];
                 for (const key of Object.keys(errorResponse)) {
@@ -26,29 +47,93 @@ const NewForm = (props) => {
                 setErrors(errorArr);
             });
     };
+
     return (
-        <div>
-            <h1>NEW</h1>
+        <div className="container p-5">
+            <div className="d-flex gap-4">
+                <h1>Add Pirate</h1>
+                <Link to="/pirates" className="btn btn-primary align-self-center">Crew Board</Link>
+            </div>
+            
             <form onSubmit={onSubmitHandler}>
                 <div>
                     {errors.map((err, index) => (
                         <p key={index}>{err}</p>
                     ))}
                 </div>
-                <p>Attribute 1: TEXT</p>
-                <input
-                    type="text"
-                    onChange={(e) => setTextAttribute(e.target.value)}
-                    placeholder="MUST HAVE 8-50 chars"
-                />
-                <p>Attribute 2: NUMBER</p>
-                <input
-                    type="number"
-                    onChange={(e) => setNumberAttribute(e.target.value)}
-                    placeholder="21.100"
-                />
-                <div>
-                    <button type="submit">Submit</button>
+                {/* MAIN INPUTS */}
+                <div className="d-flex justify-content-between">
+                    {/* LEFT SIDE */}
+                    <div className="w-50">
+                        <p>Name</p>
+                        <input
+                            type="text"
+                            onChange={(e) => setName(e.target.value)}
+                            placeholder="name"
+                            className="w-50"
+                        />
+                        <p>Image URL</p>
+                        <input
+                            type="text"
+                            onChange={(e) => setImage(e.target.value)}
+                            placeholder="http://www.pirate.com/image.jpeg"
+                            className="w-50"
+                        />
+                        <p># of Treasure Chests: </p>
+                        <input
+                            type="number"
+                            onChange={(e) => setTreasure(e.target.value)}
+                            placeholder="1"
+                            
+                        />
+                        <p>Phrase</p>
+                        <input
+                            type="text"
+                            onChange={(e) => setPhrase(e.target.value)}
+                            placeholder="yo ho yo ho"
+                            className="w-50"
+                        />
+                    </div>
+                    {/* RIGHT SIDE */}
+                    <div className="w-50">
+                        <p>Position</p>
+                        <select onChange={(e) => setRole(e.target.value)}>
+                            {defaultRoles.map((position) => (
+                                <option key={position} value={position}>{position}</option>
+                            ))}
+                        </select>
+                        {/* BODY MODS */}
+                        <div>
+                            <div className="d-flex align-items-start gap-2 p-1 mb-1">
+                                <input
+                                    type="checkbox"
+                                    onChange={(e) => setPeg(e.target.value)}
+                                    defaultChecked={peg}
+                                />{" "}
+                                <p>Peg Leg</p>
+                            </div>
+                            <div className="d-flex align-items-start gap-2 p-1 mb-1">
+                                <input
+                                    type="checkbox"
+                                    onChange={(e) => setPatch(e.target.value)}
+                                    defaultChecked={patch}
+                                />{" "}
+                                <p>Eye Patch</p>
+                            </div>
+                            <div className="d-flex align-items-start gap-2 p-1 mb-1">
+                                <input
+                                    type="checkbox"
+                                    onChange={(e) => setHook(e.target.checked)}
+                                    defaultChecked={hook}
+                                />{" "}
+                                <p>Hook Hand</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <button type="submit">Submit</button>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>

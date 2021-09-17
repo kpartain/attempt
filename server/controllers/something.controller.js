@@ -1,10 +1,17 @@
 const { Something } = require("../models/something.model");
+var validate = require('mongoose-validator')
 //CREATE
 module.exports.create = (request, response) => {
-    const { textAttribute, numberAttribute } = request.body;
+    const { name, image, treasure, phrase, role, peg, patch, hook } = request.body;
     Something.create({
-        textAttribute,
-        numberAttribute,
+        name, 
+        image, 
+        treasure, 
+        phrase, 
+        role, 
+        peg,
+        patch,
+        hook
     })
         .then((newSomethingObject) => response.json(newSomethingObject))
         .catch((errorFound) => response.status(400).json(errorFound));
