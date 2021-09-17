@@ -25,15 +25,22 @@ module.exports.getAll = (request, response) => {
 };
 module.exports.getByID = (request, response) => {
     Something.findOne({ _id: request.params._id })
-        .then((foundSomethingObject) => response.json(foundSomethingObject))
+        .then((foundSomethingObject) => {
+            console.log(foundSomethingObject)
+            response.json(foundSomethingObject)
+        })
         .catch((errorFound) => response.json(errorFound));
 };
 //UPDATE
 module.exports.updateByID = (request, response) => {
-    Something.findOneAndUpdate({ id: request.params._id }, request.body, {
+    console.log("REQUESTED ID:", request.params.id);
+    Something.findOneAndUpdate({ _id: request.params.id }, request.body, {
         new: true
     })
-        .then((somethingBeingUpdated) => response.json(somethingBeingUpdated))
+        .then((somethingBeingUpdated) => {
+            console.log(somethingBeingUpdated)
+            response.json(somethingBeingUpdated)
+        })
         .catch((errorFound) => response.status(400).json(errorFound));
 };
 //DELETE

@@ -3,8 +3,10 @@ import axios from "axios";
 import { navigate, useParams } from "@reach/router";
 
 const SingleObject = (props) => {
-    const [something, setSomething] = useState({});
     const {id} = useParams();
+    const [something, setSomething] = useState({});
+    
+
     useEffect(() => {
         console.log("CURRENT ID", id);
         axios
@@ -26,25 +28,31 @@ const SingleObject = (props) => {
         let pirateCopy = something;
         pirateCopy.peg = !something.peg;
         handleUpdate(pirateCopy);
+        navigate("/pirate/" + id);
     };
 
     const changePatch = () => {
         let pirateCopy = something;
         pirateCopy.patch = !something.patch;
         handleUpdate(pirateCopy);
+        navigate("/pirate/" + id);
     };
 
     const handleUpdate = (pirateObject) => {
+        console.log("BEFORE UPDATE", pirateObject._id)
         axios.put("http://localhost:8000/api/somethings/" + pirateObject._id, {
-            pirateObject
+            hook: pirateObject.hook,
+            patch: pirateObject.patch,
+            peg: pirateObject.peg
         })
         .then((res) => {
-            navigate("/pirate/" + pirateObject._id)
+            console.log(res);
         })
         .catch((errorFound) =>
             console.log("Error in updating body part:", errorFound)
         )
-    }
+        return navigate("/pirate/" + id);
+    };
 
     return (
         <div className="container">
